@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import useStore from "../hooks/useStore";
 
 export function useSearchMovies(query) {
   const user = useStore((state) => state.user);
   const setSearchResults = useStore((state) => state.setSearchResults);
+  const reset = useStore((state) => state.reset);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (!query) return;
@@ -27,11 +30,16 @@ export function useSearchMovies(query) {
           },
         );
 
+        const data = await res.json();
+
         if (!res.ok) {
+          if (data.message === "Token is not valid") {
+            reset();
+            useStore.persist.clearStorage();
+            navigate("/login");
+          }
           throw new Error("Something went wrong.");
         }
-
-        const data = await res.json();
 
         setSearchResults(data);
         setError("");
@@ -50,7 +58,7 @@ export function useSearchMovies(query) {
     return function () {
       controller.abort();
     };
-  }, [query, user.token, setSearchResults]);
+  }, [query, user.token, setSearchResults, navigate, reset]);
 
   return { isLoading, error };
 }

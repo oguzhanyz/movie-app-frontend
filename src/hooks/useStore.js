@@ -8,6 +8,12 @@ const useStore = create(
       searchResults: [],
       watchlist: [],
 
+      reset: () => {
+        set({ user: null });
+        set({ searchResults: [] });
+        set({ watchlist: [] });
+      },
+
       setUser: (user) => set({ user }),
 
       setSearchResults: (results) => set({ searchResults: results }),
