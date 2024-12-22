@@ -18,6 +18,8 @@ const useStore = create(
 
       setSearchResults: (results) => set({ searchResults: results }),
 
+      setWatchlist: (results) => set({ watchlist: results }),
+
       addToWatchlist: (movie) => {
         const { watchlist } = get();
         if (!watchlist.some((item) => item.id === movie.id)) {
