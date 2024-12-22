@@ -14,7 +14,7 @@ export default function Header() {
   }
 
   return (
-    <nav className="flex items-center justify-between bg-sky-300 px-2 py-4">
+    <nav className="mb-4 flex items-center justify-between bg-sky-300 px-2 py-4">
       <NavLink to="/" end>
         <h4>Movie App</h4>
       </NavLink>

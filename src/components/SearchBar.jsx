@@ -16,8 +16,8 @@ export default function SearchBar() {
   return (
     <div
       className={
-        searchResults
-          ? "my-5 flex items-center justify-center"
+        searchResults.length > 0
+          ? "flex items-center justify-center"
           : "flex min-h-[50vh] items-center justify-center"
       }
     >
