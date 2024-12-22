@@ -5,6 +5,7 @@ import Watchlist from "./pages/Watchlist";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Search from "./pages/Search";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <Header />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="search" element={<Search />} />
-        <Route path="watchlist" element={<Watchlist />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="search" element={<Search />} />
+          <Route path="watchlist" element={<Watchlist />} />
+        </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>
