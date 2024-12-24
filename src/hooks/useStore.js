@@ -26,6 +26,11 @@ const useStore = create(
           set({ watchlist: [movie, ...watchlist] });
         }
       },
+
+      removeFromWatchlist: (movieId) => {
+        const { watchlist } = get();
+        set({ watchlist: watchlist.filter((movie) => movie._id !== movieId) });
+      },
     }),
     {
       name: "movie-app-storage",

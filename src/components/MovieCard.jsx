@@ -5,6 +5,7 @@ import { checkWatchlistForMovie } from "../utils/checkWatchlistForMovie";
 export default function MovieCard({ movie }) {
   const user = useStore((state) => state.user);
   const watchlist = useStore((state) => state.watchlist);
+  const removeFromWatchlist = useStore((state) => state.removeFromWatchlist);
 
   const [isMovieInWatchlist, setIsMovieInWatchlist] = useState(
     checkWatchlistForMovie(movie._id, watchlist),
@@ -52,7 +53,7 @@ export default function MovieCard({ movie }) {
       if (res.status !== 200) {
         throw new Error(data.message);
       }
-
+      removeFromWatchlist(movie._id);
       setIsMovieInWatchlist((inWatchlist) => !inWatchlist);
     } catch (err) {
       console.log(err.message);
