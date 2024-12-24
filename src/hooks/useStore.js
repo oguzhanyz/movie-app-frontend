@@ -23,7 +23,7 @@ const useStore = create(
       addToWatchlist: (movie) => {
         const { watchlist } = get();
         if (!watchlist.some((item) => item.id === movie.id)) {
-          set({ watchlist: [...watchlist, movie] });
+          set({ watchlist: [movie, ...watchlist] });
         }
       },
     }),
