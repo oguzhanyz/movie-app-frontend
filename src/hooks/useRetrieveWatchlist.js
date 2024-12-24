@@ -13,7 +13,7 @@ export function useRetrieveWatchlist() {
   useEffect(() => {
     const controller = new AbortController();
 
-    async function fetchMWatchlist() {
+    async function fetchWatchlist() {
       try {
         setIsLoading(true);
         setError("");
@@ -48,7 +48,7 @@ export function useRetrieveWatchlist() {
       }
     }
 
-    fetchMWatchlist();
+    fetchWatchlist();
 
     return function () {
       controller.abort();
