@@ -70,21 +70,22 @@ export default function MovieCard({ movie }) {
       {movie.genres.length > 0 && (
         <p className="text-gray-700">Genres: {movie.genres.toString()}</p>
       )}
-      {isMovieInWatchlist ? (
-        <button
-          onClick={handleRemoveMovie}
-          className="rounded-md bg-red-400 p-1"
-        >
-          Remove from watchlist
-        </button>
-      ) : (
-        <button
-          onClick={handleAddMovie}
-          className="rounded-md bg-green-400 p-1"
-        >
-          Add to watchlist
-        </button>
-      )}
+      {user !== null &&
+        (isMovieInWatchlist ? (
+          <button
+            onClick={handleRemoveMovie}
+            className="rounded-md bg-red-400 p-1"
+          >
+            Remove from watchlist
+          </button>
+        ) : (
+          <button
+            onClick={handleAddMovie}
+            className="rounded-md bg-green-400 p-1"
+          >
+            Add to watchlist
+          </button>
+        ))}
     </div>
   );
 }
