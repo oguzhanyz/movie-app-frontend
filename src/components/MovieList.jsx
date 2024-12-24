@@ -5,7 +5,14 @@ export default function MovieList({ movies }) {
     <>
       <ul className="flex flex-col items-center justify-center gap-4">
         {movies.map((movie) => {
-          return <MovieCard movie={movie} key={movie._id} />;
+          return (
+            <li
+              key={movie._id}
+              className="transform overflow-hidden rounded-lg border bg-white shadow-md transition duration-300 hover:scale-105"
+            >
+              <MovieCard movie={movie} />
+            </li>
+          );
         })}
       </ul>
     </>

@@ -1,3 +1,4 @@
 export function checkWatchlistForMovie(movieId, watchlist) {
-  return watchlist.some((movie) => movie._id === movieId);
+  if (!watchlist) return false;
+  return watchlist?.some((movie) => movie._id === movieId);
 }
