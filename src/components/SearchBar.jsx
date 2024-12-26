@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import useStore from "../hooks/useStore";
 
-export default function SearchBar() {
+export default function SearchBar({ pageNumber, setPageNumber }) {
   const [query, setQuery] = useState("");
   const searchResults = useStore((state) => state.searchResults);
 
-  const { isLoading, error } = useSearchMovies(query);
+  const { isLoading, error } = useSearchMovies(query, pageNumber);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setPageNumber(1);
     setQuery(e.target.query.value);
   }
 

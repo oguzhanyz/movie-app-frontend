@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useStore from "../hooks/useStore";
 
-export function useSearchMovies(query) {
+export function useSearchMovies(query, pageNumber) {
   const user = useStore((state) => state.user);
   const setSearchResults = useStore((state) => state.setSearchResults);
+  const setTotalPages = useStore((state) => state.setTotalPages);
+  const setTotalMovies = useStore((state) => state.setTotalMovies);
+  const appendToSearchResults = useStore(
+    (state) => state.appendToSearchResults,
+  );
   const reset = useStore((state) => state.reset);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -21,7 +26,7 @@ export function useSearchMovies(query) {
         setError("");
 
         const res = await fetch(
-          `http://127.0.0.1:3000/api/search?title=${query}`,
+          `http://127.0.0.1:3000/api/search?title=${query}&p=${pageNumber}`,
           {
             signal: controller.signal,
             headers: {
@@ -41,7 +46,13 @@ export function useSearchMovies(query) {
           throw new Error("Something went wrong.");
         }
 
-        setSearchResults(data);
+        if (pageNumber === 1) {
+          setSearchResults(data.movies);
+          setTotalPages(data.totalPages);
+          setTotalMovies(data.totalMovies);
+        } else {
+          appendToSearchResults(data.movies);
+        }
         setError("");
       } catch (err) {
         if (err.name !== "AbortError") {
@@ -58,7 +69,17 @@ export function useSearchMovies(query) {
     return function () {
       controller.abort();
     };
-  }, [query, user.token, setSearchResults, navigate, reset]);
+  }, [
+    query,
+    user.token,
+    setSearchResults,
+    appendToSearchResults,
+    navigate,
+    reset,
+    pageNumber,
+    setTotalMovies,
+    setTotalPages,
+  ]);
 
   return { isLoading, error };
 }

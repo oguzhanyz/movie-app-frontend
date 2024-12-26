@@ -7,6 +7,8 @@ const useStore = create(
       user: null,
       searchResults: [],
       watchlist: [],
+      totalPages: 0,
+      totalMovies: 0,
 
       reset: () => {
         set({ user: null });
@@ -17,6 +19,11 @@ const useStore = create(
       setUser: (user) => set({ user }),
 
       setSearchResults: (results) => set({ searchResults: results }),
+
+      appendToSearchResults: (results) => {
+        const { searchResults } = get();
+        set({ searchResults: [...searchResults, ...results] });
+      },
 
       setWatchlist: (results) => set({ watchlist: results }),
 
@@ -31,6 +38,10 @@ const useStore = create(
         const { watchlist } = get();
         set({ watchlist: watchlist.filter((movie) => movie._id !== movieId) });
       },
+
+      setTotalPages: (num) => set({ totalPages: num }),
+
+      setTotalMovies: (num) => set({ totalMovies: num }),
     }),
     {
       name: "movie-app-storage",
