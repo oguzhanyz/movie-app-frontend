@@ -19,13 +19,11 @@ export default function Search() {
         <div>
           <p className="text-center">{`${totalMovies} results`}</p>
           <MovieList movies={searchResults} />
-          <button
-            onClick={increasePageNumber}
-            className="border"
-            disabled={pageNumber >= totalPages}
-          >
-            Show more
-          </button>
+          {pageNumber < totalPages && (
+            <button onClick={increasePageNumber} className="border">
+              Show more
+            </button>
+          )}
         </div>
       )}
     </div>
