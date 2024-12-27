@@ -51,6 +51,11 @@ export default function Watchlist() {
     if (pageNumber < maxPageNumber) setPageNumber((pN) => pN + 1);
   }
 
+  function handleGenreChange(selectedOptions) {
+    setSelectedGenres(selectedOptions);
+    setPageNumber(1);
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {isLoading ? (
@@ -59,7 +64,7 @@ export default function Watchlist() {
         <>
           <SelectForm
             defaultValue={selectedGenres}
-            onChange={setSelectedGenres}
+            onChange={handleGenreChange}
           />
           <RuntimeFilter
             setRuntimeLength={setRuntimeLength}
