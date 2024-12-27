@@ -77,14 +77,14 @@ export default function MovieCard({ movie }) {
         (isMovieInWatchlist ? (
           <button
             onClick={handleRemoveMovie}
-            className="rounded-md bg-red-400 p-1"
+            className="w-1/2 self-center rounded-md bg-red-400 p-1 active:scale-95"
           >
             Remove from watchlist
           </button>
         ) : (
           <button
             onClick={handleAddMovie}
-            className="w-1/2 self-center rounded-md bg-green-400 p-1"
+            className="w-1/2 self-center rounded-md bg-green-400 p-1 active:scale-95"
           >
             Add to watchlist
           </button>
