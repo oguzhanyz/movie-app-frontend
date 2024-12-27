@@ -39,6 +39,9 @@ export default function SelectForm({ defaultValue, onChange }) {
       options={options}
       className="basic-multi-select"
       classNamePrefix="select"
+      classNames={{
+        control: () => "w-1/2 mx-auto",
+      }}
     />
   );
 }

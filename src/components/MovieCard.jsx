@@ -61,7 +61,7 @@ export default function MovieCard({ movie }) {
   }
 
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex h-full flex-col justify-evenly p-4">
       <h2 className="text-lg font-bold text-gray-800">{movie.primaryTitle}</h2>
       <p className="text-sm text-gray-600">
         {movie.startYear}{" "}
@@ -70,6 +70,9 @@ export default function MovieCard({ movie }) {
       {movie.genres.length > 0 && (
         <p className="text-gray-700">Genres: {movie.genres.toString()}</p>
       )}
+      <p>
+        {movie.averageRating}, {movie.numVotes}
+      </p>
       {user !== null &&
         (isMovieInWatchlist ? (
           <button
@@ -81,7 +84,7 @@ export default function MovieCard({ movie }) {
         ) : (
           <button
             onClick={handleAddMovie}
-            className="rounded-md bg-green-400 p-1"
+            className="w-1/2 self-center rounded-md bg-green-400 p-1"
           >
             Add to watchlist
           </button>

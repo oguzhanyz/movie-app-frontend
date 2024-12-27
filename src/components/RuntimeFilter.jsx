@@ -4,6 +4,7 @@ const MAX_LENGTH = 400;
 export default function RuntimeFilter({
   setRuntimeLength,
   setRuntimeFilterError,
+  classNames,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +28,7 @@ export default function RuntimeFilter({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center justify-center gap-8"
+      className={`flex items-center justify-center gap-8 ${classNames}`}
     >
       <div className="flex gap-2">
         <label htmlFor="minLength">Min length:</label>

@@ -69,6 +69,7 @@ export default function Watchlist() {
           <RuntimeFilter
             setRuntimeLength={setRuntimeLength}
             setRuntimeFilterError={setRuntimeFilterError}
+            classNames={"w-1/2 self-center"}
           />
           {runtimeFilterError && (
             <span className="text-center">{runtimeFilterError}</span>

@@ -8,7 +8,7 @@ export default function MovieList({ movies }) {
           return (
             <li
               key={movie._id}
-              className="transform overflow-hidden rounded-lg border bg-white shadow-md transition duration-300 hover:scale-105"
+              className="h-64 w-2/5 transform overflow-hidden rounded-lg border bg-white shadow-md transition duration-300 hover:scale-105"
             >
               <MovieCard movie={movie} />
             </li>

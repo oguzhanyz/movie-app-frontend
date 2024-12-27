@@ -39,7 +39,7 @@ export default function Home() {
       {isLoading ? (
         <p>Loading...</p>
       ) : movie ? (
-        <div className="transform overflow-hidden rounded-lg border bg-white shadow-md transition duration-300 hover:scale-105">
+        <div className="h-64 w-2/5 transform overflow-hidden rounded-lg border bg-white shadow-md transition duration-300 hover:scale-105">
           <MovieCard movie={movie} />
         </div>
       ) : (
