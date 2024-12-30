@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useStore from "../hooks/useStore";
 import { checkWatchlistForMovie } from "../utils/checkWatchlistForMovie";
+import { formatVotes } from "../utils/formatVotes";
 
 export default function MovieCard({ movie }) {
   const user = useStore((state) => state.user);
@@ -63,16 +64,19 @@ export default function MovieCard({ movie }) {
   return (
     <div className="flex h-full flex-col justify-evenly p-4">
       <h2 className="text-lg font-bold text-gray-800">{movie.primaryTitle}</h2>
-      <p className="text-sm text-gray-600">
-        {movie.startYear}{" "}
-        {movie.runtimeMinutes && `\u2022 ${movie.runtimeMinutes} minutes`}
-      </p>
+      <div className="flex justify-between">
+        <p className="text-sm text-gray-600">
+          {movie.startYear}{" "}
+          {movie.runtimeMinutes && `\u2022 ${movie.runtimeMinutes} minutes`}
+        </p>
+        <p className="text-gray-600">
+          &#9733; <span className="font-semibold">{movie.averageRating}</span>
+          /10 ({formatVotes(movie.numVotes)})
+        </p>
+      </div>
       {movie.genres.length > 0 && (
         <p className="text-gray-700">Genres: {movie.genres.toString()}</p>
       )}
-      <p>
-        {movie.averageRating}, {movie.numVotes}
-      </p>
       {user !== null &&
         (isMovieInWatchlist ? (
           <button
