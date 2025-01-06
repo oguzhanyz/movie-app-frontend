@@ -69,10 +69,12 @@ export default function Watchlist() {
           <RuntimeFilter
             setRuntimeLength={setRuntimeLength}
             setRuntimeFilterError={setRuntimeFilterError}
-            classNames={"w-1/2 self-center"}
+            classNames={"w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto"}
           />
           {runtimeFilterError && (
-            <span className="text-center">{runtimeFilterError}</span>
+            <span className="text-center text-red-500">
+              {runtimeFilterError}
+            </span>
           )}
           {filterArray.length > 0 ? (
             filteredWatchlist.length > 0 ? (
@@ -83,16 +85,28 @@ export default function Watchlist() {
           ) : (
             <MovieList movies={paginatedWatchlist} />
           )}
-          <div className="flex justify-center gap-2 text-2xl">
-            <button onClick={handleDecreasePageNumber}> &lt; </button>
+          <div className="flex items-center justify-center gap-2 text-2xl">
+            <button
+              onClick={handleDecreasePageNumber}
+              className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+            >
+              &lt;
+            </button>
             <span>{pageNumber}</span>
-            <button onClick={handleIncreasePageNumber}> &gt; </button>
+            <button
+              onClick={handleIncreasePageNumber}
+              className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+            >
+              &gt;
+            </button>
           </div>
         </>
       ) : (
-        <p>Try searching a movie to add to your watchlist.</p>
+        <p className="text-center">
+          Try searching a movie to add to your watchlist.
+        </p>
       )}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-center text-red-500">{error}</p>}
     </div>
   );
 }

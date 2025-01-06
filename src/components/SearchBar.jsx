@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useSearchMovies } from "../hooks/useSearchMovies";
-import useStore from "../hooks/useStore";
 
-export default function SearchBar({ pageNumber, setPageNumber }) {
+export default function SearchBar({ pageNumber, setPageNumber, classNames }) {
   const [query, setQuery] = useState("");
-  const searchResults = useStore((state) => state.searchResults);
 
   const { isLoading, error } = useSearchMovies(query, pageNumber);
 
@@ -15,13 +13,7 @@ export default function SearchBar({ pageNumber, setPageNumber }) {
   }
 
   return (
-    <div
-      className={
-        searchResults.length > 0
-          ? "mb-4 flex items-center justify-center"
-          : "flex min-h-[50vh] items-center justify-center"
-      }
-    >
+    <div className={classNames}>
       <form onSubmit={handleSubmit} className="flex">
         <input
           type="text"
