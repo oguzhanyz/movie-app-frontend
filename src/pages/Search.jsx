@@ -1,17 +1,35 @@
 import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
 import useStore from "../hooks/useStore";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Search() {
   const searchResults = useStore((state) => state.searchResults);
   const totalPages = useStore((state) => state.totalPages);
   const totalMovies = useStore((state) => state.totalMovies);
   const [pageNumber, setPageNumber] = useState(1);
+  const prevResultsLengthRef = useRef(0);
+  const [shouldScroll, setShouldScroll] = useState(false);
 
   function increasePageNumber() {
     setPageNumber((pN) => pN + 1);
+    setShouldScroll(true);
   }
+
+  useEffect(() => {
+    if (shouldScroll && searchResults.length > prevResultsLengthRef.current) {
+      setTimeout(() => {
+        const scrollDistance = window.scrollY + window.innerHeight * 0.7;
+        window.scrollTo({
+          top: scrollDistance,
+          behavior: "smooth",
+        });
+        setShouldScroll(false);
+      }, 100);
+    }
+    prevResultsLengthRef.current = searchResults.length;
+  }, [searchResults.length, shouldScroll]);
+
   return (
     <div>
       <SearchBar
