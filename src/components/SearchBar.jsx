@@ -14,12 +14,15 @@ export default function SearchBar({ pageNumber, setPageNumber, classNames }) {
 
   return (
     <div className={classNames}>
-      <form onSubmit={handleSubmit} className="flex">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto flex w-4/5 max-w-xl sm:w-full 2xl:max-w-2xl"
+      >
         <input
           type="text"
           placeholder="The Lord of the Rings"
           id="query"
-          className="rounded-l-full border-2 border-sky-400 bg-white px-4 py-2 text-black placeholder-slate-400 outline-none"
+          className="w-full rounded-l-full border-2 border-sky-400 bg-white px-4 py-2 text-black placeholder-slate-400 outline-none"
         />
         <button
           type="submit"
